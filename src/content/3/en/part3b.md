@@ -401,12 +401,12 @@ The script looks like this:
 ```
   
 ##### Note for Windows users
-Note that the standard shell commands in `build:ui` do not natively work in Windows. Powershell in Windows works differently, in which case the script could be written as
+Note that the standard shell commands in `build:ui` do not natively work in Windows. Windows works differently, in which case the script could be written as
 ```json
-"build:ui": "@powershell Remove-Item -Recurse -Force build && cd ../frontend && npm run build && @powershell Copy-Item build -Recurse ../backend",
+"build:ui": "rmdir /s /q \"dist\" && cd ../notes-frontend && npm run build && xcopy dist ..\\notes-backend\\dist /i /s",
 ```
   
-If the script does not work on Windows, confirm that you are using Powershell and not Command Prompt. If you have installed Git Bash or another Linux-like terminal, you may be able to run Linux-like commands on Windows as well.
+If you have installed Git Bash or another Linux-like terminal, you may be able to run Linux-like commands on Windows as well.
 
 
 The script _npm run build:ui_ builds the frontend and copies the production version under the backend repository. The script _npm run deploy_ releases the current backend to Fly.io.
